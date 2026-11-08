@@ -789,3 +789,7 @@ h2 { font-size: clamp(1.9rem, 4vw, 3.2rem); font-weight: 400; letter-spacing: -.
   .crumbs2 a { display: inline-block; padding: 8px 2px; }
   .lang { padding: 9px 14px; }
 }
+
+/* v30 footer social icons side by side */
+.footer3 .socials { display: flex; justify-content: center; gap: 14px; margin: 4px 0 20px; }
+.footer3 .socials .social { margin: 0; }
