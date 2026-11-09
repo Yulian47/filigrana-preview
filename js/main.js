@@ -118,7 +118,25 @@
       var lines = s.sel.map(function (b) { return "• " + (en ? b.dataset.en : b.dataset.no) + " (" + (b.dataset.from === "1" ? (en ? "from " : "fra ") : "") + nf(b.dataset.p) + (en ? " NOK" : " kr") + ")"; });
       return (en ? "Hello! I would like to book:\n" : "Hei! Jeg ønsker å bestille:\n") + lines.join("\n") + "\n\n" + (en ? "Total: " : "Totalt: ") + priceTxt(s) + (en ? ", approx. time: " : ", omtrentlig tid: ") + timeTxt(s) + "\n" + (en ? "Preferred days/times: " : "Ønskede dager/tider: ");
     };
+    var rules = function () {
+      var on = function (g) { return items.some(function (b) { return b.dataset.group === g && b.getAttribute("aria-pressed") === "true"; }); };
+      var hasM = on("manikyr"), hasP = on("pedikyr");
+      var sel = items.filter(function (b) { return b.getAttribute("aria-pressed") === "true" && b.dataset.group === "vipper-bryn"; });
+      var okFor = function (b, k) { return (b.dataset.combo || "").indexOf(k) > -1; };
+      items.forEach(function (b) {
+        var block = false;
+        if (b.dataset.group === "vipper-bryn") {
+          if (hasM && !okFor(b, "m")) block = true;
+          if (hasP && !okFor(b, "p")) block = true;
+        } else if (b.dataset.group === "manikyr" || b.dataset.group === "pedikyr") {
+          var k = b.dataset.group === "manikyr" ? "m" : "p";
+          if (sel.some(function (v) { return !okFor(v, k); })) block = true;
+        }
+        if (block && b.getAttribute("aria-pressed") !== "true") b.setAttribute("aria-disabled", "true"); else b.removeAttribute("aria-disabled");
+      });
+    };
     var render = function () {
+      rules();
       var s = state(), has = s.sel.length > 0;
       sumLines.innerHTML = "";
       s.sel.forEach(function (b) {
@@ -139,6 +157,7 @@
     };
     items.forEach(function (b) {
       b.addEventListener("click", function () {
+        if (b.getAttribute("aria-disabled") === "true") return;
         var on = b.getAttribute("aria-pressed") === "true";
         if (b.dataset.mode === "one" && !on) items.forEach(function (o) { if (o.dataset.group === b.dataset.group) o.setAttribute("aria-pressed", "false"); });
         b.setAttribute("aria-pressed", on ? "false" : "true");

@@ -913,3 +913,7 @@ body:has(.kcalc) .dock { display: none !important; }
   .kcalc__bar span { font-size: .78rem; color: #d8c7ac; }
   .kcalc__bar .btn { padding: 12px 18px; font-size: .8rem; white-space: nowrap; }
 }
+
+.kgroup__note { clear: both; margin: -2px 0 12px; font-size: .85rem; color: var(--muted); line-height: 1.5; }
+.kitem[aria-disabled="true"] { opacity: .38; cursor: not-allowed; }
+.kitem[aria-disabled="true"]:hover { border-color: transparent; }
