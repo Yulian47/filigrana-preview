@@ -119,20 +119,24 @@
       return (en ? "Hello! I would like to book:\n" : "Hei! Jeg ønsker å bestille:\n") + lines.join("\n") + "\n\n" + (en ? "Total: " : "Totalt: ") + priceTxt(s) + (en ? ", approx. time: " : ", omtrentlig tid: ") + timeTxt(s) + "\n" + (en ? "Preferred days/times: " : "Ønskede dager/tider: ");
     };
     var rules = function () {
-      var on = function (g) { return items.some(function (b) { return b.dataset.group === g && b.getAttribute("aria-pressed") === "true"; }); };
-      var hasM = on("manikyr"), hasP = on("pedikyr");
-      var sel = items.filter(function (b) { return b.getAttribute("aria-pressed") === "true" && b.dataset.group === "vipper-bryn"; });
+      var pressed = function (b) { return b.getAttribute("aria-pressed") === "true"; };
+      var hasM = items.some(function (b) { return b.dataset.group === "manikyr" && pressed(b); });
+      var pSel = items.filter(function (b) { return b.dataset.group === "pedikyr" && pressed(b); });
+      var hasP = pSel.length > 0, badP = pSel.some(function (b) { return b.dataset.pc !== "1"; });
+      var vSel = items.filter(function (b) { return b.dataset.group === "vipper-bryn" && pressed(b); });
       var okFor = function (b, k) { return (b.dataset.combo || "").indexOf(k) > -1; };
       items.forEach(function (b) {
         var block = false;
         if (b.dataset.group === "vipper-bryn") {
           if (hasM && !okFor(b, "m")) block = true;
-          if (hasP && !okFor(b, "p")) block = true;
-        } else if (b.dataset.group === "manikyr" || b.dataset.group === "pedikyr") {
-          var k = b.dataset.group === "manikyr" ? "m" : "p";
-          if (sel.some(function (v) { return !okFor(v, k); })) block = true;
+          if (hasP && (badP || !okFor(b, "p"))) block = true;
+        } else if (b.dataset.group === "manikyr") {
+          if (vSel.some(function (v) { return !okFor(v, "m"); })) block = true;
+        } else if (b.dataset.group === "pedikyr") {
+          if (vSel.length && b.dataset.pc !== "1") block = true;
+          if (vSel.some(function (v) { return !okFor(v, "p"); })) block = true;
         }
-        if (block && b.getAttribute("aria-pressed") !== "true") b.setAttribute("aria-disabled", "true"); else b.removeAttribute("aria-disabled");
+        if (block && !pressed(b)) b.setAttribute("aria-disabled", "true"); else b.removeAttribute("aria-disabled");
       });
     };
     var render = function () {
