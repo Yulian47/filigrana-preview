@@ -119,6 +119,17 @@
     fill();
         root.getBoundingClientRect();                                  // force layout so the transition runs
     setTimeout(function () { root.classList.add("is-open"); }, 40);
+    // Never cover the footer (cookie settings link, contact details): hide the popup while the footer is on screen.
+    var ft = doc.querySelector("footer");
+    if (ft && "IntersectionObserver" in window && !root.__ftObs) {
+      root.__ftObs = new IntersectionObserver(function (entries) {
+        var on = entries[0].isIntersecting;
+        root.style.opacity = on ? "0" : "";
+        root.style.pointerEvents = on ? "none" : "";
+        root.style.visibility = on ? "hidden" : "";
+      }, { threshold: 0 });
+      root.__ftObs.observe(ft);
+    }
     if (typeof window.gtag === "function") window.gtag("event", "promo_view", { promo_id: CONFIG.id });
   }
 
