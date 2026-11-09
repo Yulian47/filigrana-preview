@@ -854,3 +854,15 @@ a[href^="tel:"] { white-space: nowrap; }
   .promo__cta { flex: 1 1 auto; justify-content: center; }
 }
 @media (max-width: 380px) { .promo__top { flex-wrap: wrap; } .promo__list { font-size: .88rem; } }
+
+/* v35 – combine services */
+.combo__lead { max-width: 60ch; margin: 0 0 28px; color: var(--muted); }
+.combo__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.combo__card { background: var(--card); border-radius: var(--r); padding: 28px; display: flex; flex-direction: column; gap: 18px; }
+.combo__chips { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.combo .chip { display: inline-block; padding: 10px 16px; border-radius: 999px; background: var(--cream); border: 1px solid var(--line); color: var(--ink); font-weight: 500; line-height: 1.25; text-decoration: none; transition: background .2s, color .2s, border-color .2s; }
+.combo .chip:hover { background: var(--gold); border-color: var(--gold); color: #fff; }
+.combo .cplus { color: var(--gold); font-size: 1.4rem; font-weight: 300; line-height: 1; }
+.combo .alt { color: var(--muted); font-size: .85rem; letter-spacing: .12em; text-transform: uppercase; }
+.combo__cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+@media (max-width: 800px) { .combo__grid { grid-template-columns: 1fr; } .combo__card { padding: 22px; } .combo__cta .btn { flex: 1 1 180px; justify-content: center; } }
