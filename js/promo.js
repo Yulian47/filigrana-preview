@@ -24,8 +24,8 @@
     delayMs: 5000,        // через скільки мс після завантаження показати
     rememberDays: 3,      // скільки днів не показувати після закриття
     pages: ["all"],       // "all" або список сторінок: "", "permanent-make-up", "vipper-bryn", ...
-    image: "assets/icons/img/PERMANENT MAKE UP/photo_2026-07-18 12.04.11.webp",
-    imagePosition: "50% 30%",
+    image: "assets/icons/img/PERMANENT MAKE UP/promo-lepper.webp",
+    imagePosition: "50% 50%",
     kicker: { no: "Julekampanje", en: "Christmas offer" },
     badge: "−15 %",
     title: { no: "Fine bryn til jul og nyttår? Start nå.", en: "Beautiful brows for Christmas and New Year? Start now." },
