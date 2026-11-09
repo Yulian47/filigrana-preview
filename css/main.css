@@ -855,17 +855,25 @@ a[href^="tel:"] { white-space: nowrap; }
 }
 @media (max-width: 380px) { .promo__top { flex-wrap: wrap; } .promo__list { font-size: .88rem; } }
 
-/* v35 – combine services */
-.combo__lead { max-width: 60ch; margin: 0 0 28px; color: var(--muted); }
+/* v35 – combine services (v37 redesign) */
+.combo__head { display: grid; grid-template-columns: 1.1fr 1fr; gap: 24px 48px; align-items: end; margin-bottom: 32px; }
+.combo__title { margin: .4rem 0 0; font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 300; letter-spacing: -.03em; line-height: 1; color: var(--ink); }
+.combo__title em { font-style: normal; color: var(--gold); }
+.combo__lead { margin: 0; color: var(--muted); max-width: 52ch; line-height: 1.6; }
 .combo__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-.combo__card { background: var(--card); border-radius: var(--r); padding: 28px; display: flex; flex-direction: column; gap: 18px; }
-.combo__chips { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
-.combo .chip { display: inline-block; padding: 10px 16px; border-radius: 999px; background: var(--cream); border: 1px solid var(--line); color: var(--ink); font-weight: 500; line-height: 1.25; text-decoration: none; transition: background .2s, color .2s, border-color .2s; }
-.combo .chip:hover { background: var(--gold); border-color: var(--gold); color: #fff; }
-.combo .cplus { color: var(--gold); font-size: 1.4rem; font-weight: 300; line-height: 1; }
-.combo .alt { color: var(--muted); font-size: .85rem; letter-spacing: .12em; text-transform: uppercase; }
-.combo__cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-@media (max-width: 800px) { .combo__grid { grid-template-columns: 1fr; } .combo__card { padding: 22px; } .combo__cta .btn { flex: 1 1 180px; justify-content: center; } }
+.combo__card { position: relative; overflow: hidden; isolation: isolate; border-radius: 28px; padding: 30px 30px 34px; background: linear-gradient(150deg, #f6eee1 0%, #ecdfcc 100%); display: flex; flex-direction: column; gap: 22px; min-height: 230px; }
+.combo__card::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(120% 90% at 100% 0%, color-mix(in srgb, var(--gold) 16%, transparent), transparent 60%); }
+.combo__no { position: absolute; right: 22px; top: 6px; font-size: 5.5rem; font-weight: 300; line-height: 1; letter-spacing: -.04em; color: color-mix(in srgb, var(--gold) 18%, transparent); pointer-events: none; z-index: -1; }
+.combo__chips { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: auto; }
+.combo .chip { display: inline-block; padding: 11px 18px; border-radius: 999px; background: rgba(255,255,255,.85); border: 1px solid var(--line); color: var(--ink); font-weight: 500; line-height: 1.25; text-decoration: none; box-shadow: 0 4px 14px rgba(48,32,13,.06); transition: background .2s, color .2s, border-color .2s, transform .2s; }
+.combo .chip:hover { background: var(--gold); border-color: var(--gold); color: #fff; transform: translateY(-2px); }
+.combo .cplus { display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; border: 1px solid var(--gold); color: var(--gold); font-size: 1rem; line-height: 1; flex: none; }
+.combo .alt { color: var(--gold); font-size: .78rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; padding: 0 4px; }
+.combo__foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 24px; margin-top: 28px; }
+.combo__tag { display: inline-flex; align-items: center; gap: 10px; padding: 10px 18px 10px 14px; border-radius: 999px; background: var(--tint-2); color: var(--ink); font-size: .9rem; font-weight: 500; }
+.combo__tag svg { width: 20px; height: 20px; color: var(--gold); flex: none; }
+.combo__cta { display: flex; flex-wrap: wrap; gap: 12px; }
+@media (max-width: 860px) { .combo__head { grid-template-columns: 1fr; } .combo__grid { grid-template-columns: 1fr; } .combo__card { padding: 24px 22px 26px; min-height: 0; } .combo__no { font-size: 4.2rem; } .combo__cta { width: 100%; } .combo__cta .btn { flex: 1 1 170px; justify-content: center; } .combo__tag { border-radius: 18px; } }
 
 /* v36 – price calculator */
 body:has(.kcalc) .dock { display: none !important; }
