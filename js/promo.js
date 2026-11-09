@@ -18,9 +18,9 @@
 
   var CONFIG = {
     enabled: true,
-    id: "pmu-jul-2026",
+    id: "pmu-nov-2026",
     start: "",            // напр. "2026-11-08"
-    end: "",              // напр. "2026-12-15"  (після цієї дати вікно зникає)
+    end: "2026-11-30",    // остання дата показу включно; після неї вікно саме зникає
     delayMs: 5000,        // через скільки мс після завантаження показати
     rememberDays: 3,      // скільки днів не показувати після закриття
     pages: ["all"],       // "all" або список сторінок: "", "permanent-make-up", "vipper-bryn", ...
@@ -31,7 +31,7 @@
     title: { no: "Fine bryn til jul og nyttår? Start nå.", en: "Beautiful brows for Christmas and New Year? Start now." },
     subtitle: { no: "på permanent makeup", en: "on permanent makeup" },
     lines: [
-      { no: "Bestill innen 7 dager.", en: "Book within 7 days." },
+      { no: "Tilbudet gjelder til og med 30. november.", en: "The offer is valid until and including 30 November." },
       { no: "Sett av tid til tilheling og eventuell korrigering før høytiden.", en: "Allow time for healing and any correction before the holidays." }
     ],
     cta: {
