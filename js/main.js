@@ -74,6 +74,8 @@
   // ---- Contact form (Formspree) ----
   var form = document.getElementById("contactForm");
   if (form) {
+    var dIn = form.querySelector("#cf-date");
+    if (dIn) { var td = new Date(); dIn.min = td.getFullYear() + "-" + ("0" + (td.getMonth() + 1)).slice(-2) + "-" + ("0" + td.getDate()).slice(-2); }
     var status = form.querySelector(".cform__status");
     var MSG = {
       no: { ok: "Takk for din melding! Vi tar kontakt snart.", err: "Noe gikk galt. Prøv igjen.", req: "Fyll ut navn, gyldig e-post, telefonnummer og en melding (minst 10 tegn).", sending: "Sender…" },
@@ -123,7 +125,7 @@
     var message = function (s) {
       var en = isEn();
       var lines = s.sel.map(function (b) { return "• " + (en ? b.dataset.en : b.dataset.no) + " (" + (b.dataset.from === "1" ? (en ? "from " : "fra ") : "") + nf(b.dataset.p) + (en ? " NOK" : " kr") + ")"; });
-      return (en ? "Hello! I would like to book:\n" : "Hei! Jeg ønsker å bestille:\n") + lines.join("\n") + "\n\n" + (en ? "Total: " : "Totalt: ") + priceTxt(s) + (en ? ", approx. time: " : ", omtrentlig tid: ") + timeTxt(s) + "\n" + (en ? "Preferred days/times: " : "Ønskede dager/tider: ");
+      return (en ? "Hello! I would like to book:\n" : "Hei! Jeg ønsker å bestille:\n") + lines.join("\n") + "\n\n" + (en ? "Total: " : "Totalt: ") + priceTxt(s) + (en ? ", approx. time: " : ", omtrentlig tid: ") + timeTxt(s) ;
     };
     var rules = function () {
       var pressed = function (b) { return b.getAttribute("aria-pressed") === "true"; };

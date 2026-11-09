@@ -71,7 +71,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;500;600&display=swap" />
     <link rel="preload" as="image" href="assets/icons/img/MARK8889-Edit%20(2).webp" fetchpriority="high" />
     <link rel="icon" type="image/png" href="assets/icons/logo/favicon.png" />
-    <link rel="stylesheet" href="css/main.css?v=20261109o" />
+    <link rel="stylesheet" href="css/main.css?v=20261109p" />
   </head>
   <body>
     <svg width="0" height="0" style="position:absolute" aria-hidden="true"></svg>
@@ -279,6 +279,10 @@
                 <div><label for="cf-name"><span data-lang="no">Navn*</span><span data-lang="en">Name*</span></label><input id="cf-name" name="name" type="text" autocomplete="name" required /></div>
                 <div><label for="cf-email">E-post*</label><input id="cf-email" name="email" type="email" autocomplete="email" required /></div>
                 <div><label for="cf-phone"><span data-lang="no">Telefon*</span><span data-lang="en">Phone*</span></label><input id="cf-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+47 000 00 000" required /><small class="cform__hint"><span data-lang="no">Du får SMS-bekreftelse på timen din.</span><span data-lang="en">You will receive an SMS confirmation of your appointment.</span></small></div>
+                <div class="cform__row">
+                  <div><label for="cf-date"><span data-lang="no">Ønsket dato</span><span data-lang="en">Preferred date</span></label><input id="cf-date" name="date" type="date" /></div>
+                  <div><label for="cf-time"><span data-lang="no">Ønsket tid</span><span data-lang="en">Preferred time</span></label><input id="cf-time" name="time" type="time" min="09:00" max="19:00" step="900" /></div>
+                </div>
                 <div><label for="cf-msg"><span data-lang="no">Melding*</span><span data-lang="en">Message*</span></label><textarea id="cf-msg" name="message" rows="3" required></textarea></div>
                 <small><span data-lang="no">Ved å sende godtar du vår <a href="personvern.html">personvernerklæring</a>.</span><span data-lang="en">By sending you accept our <a href="personvern.html">privacy policy</a>.</span></small>
                 <div><button class="btn btn--primary" type="submit"><span data-lang="no">Send</span><span data-lang="en">Send</span></button></div>
@@ -305,8 +309,8 @@
       <a class="btn btn--primary btn--sm" href="https://timma.no/salong/olha-bratash" target="_blank" rel="noopener noreferrer"><span data-lang="no">Bestill time</span><span data-lang="en">Book now</span></a>
     </div>
 
-    <script src="js/main.js?v=20261109o" defer></script>
-    <script src="js/tracking.js?v=20261109o" defer></script>
-    <script src="js/promo.js?v=20261109o" defer></script>
+    <script src="js/main.js?v=20261109p" defer></script>
+    <script src="js/tracking.js?v=20261109p" defer></script>
+    <script src="js/promo.js?v=20261109p" defer></script>
   </body>
 </html>
