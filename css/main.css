@@ -942,3 +942,4 @@ body:has(.kcalc) .dock { display: none !important; }
 .combo__card .ear .round-btn { border-color: var(--ink); }
 .combo__card .ear:hover .round-btn { background: var(--gold); border-color: var(--gold); color: #fff; transform: rotate(-45deg); }
 @media (max-width: 860px) { .combo__card.card--dark { padding: 24px 22px 28px; } .combo__card .combo__chips { margin-bottom: 34px; } }
+.cform .cform__hint { display: block; margin-top: 6px; }

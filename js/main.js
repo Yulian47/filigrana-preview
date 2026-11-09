@@ -76,15 +76,16 @@
   if (form) {
     var status = form.querySelector(".cform__status");
     var MSG = {
-      no: { ok: "Takk for din melding! Vi tar kontakt snart.", err: "Noe gikk galt. Prøv igjen.", req: "Fyll ut navn, gyldig e-post og en melding (minst 10 tegn).", sending: "Sender…" },
-      en: { ok: "Thank you! We will be in touch soon.", err: "Something went wrong. Please try again.", req: "Please fill in name, a valid email and a message (min. 10 characters).", sending: "Sending…" }
+      no: { ok: "Takk for din melding! Vi tar kontakt snart.", err: "Noe gikk galt. Prøv igjen.", req: "Fyll ut navn, gyldig e-post, telefonnummer og en melding (minst 10 tegn).", sending: "Sender…" },
+      en: { ok: "Thank you! We will be in touch soon.", err: "Something went wrong. Please try again.", req: "Please fill in name, a valid email, phone number and a message (min. 10 characters).", sending: "Sending…" }
     };
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       var t = MSG[doc.getAttribute("lang") === "en" ? "en" : "no"];
       var n = form.name.value.trim(), m = form.email.value.trim(), msg = form.message.value.trim();
+      var ph = form.phone ? form.phone.value.replace(/[^\d]/g, "") : "12345678";
       status.className = "cform__status";
-      if (n.length < 2 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(m) || msg.length < 10) { status.textContent = t.req; status.classList.add("err"); return; }
+      if (n.length < 2 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(m) || ph.length < 8 || msg.length < 10) { status.textContent = t.req; status.classList.add("err"); return; }
       var btn = form.querySelector("button[type=submit]"); btn.disabled = true; status.textContent = t.sending;
       fetch(form.action, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } })
         .then(function (r) { if (!r.ok) throw 0; status.textContent = t.ok; status.classList.add("ok"); form.reset(); })
