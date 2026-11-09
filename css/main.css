@@ -952,3 +952,9 @@ body:has(.kcalc) .dock { display: none !important; }
 .combo__card .chip { cursor: pointer; transform: none !important; }
 .combo__card:hover .chip { background: rgba(255,255,255,.16); }
 .combo__card:hover .ear .round-btn { background: var(--gold); border-color: var(--gold); color: #fff; transform: rotate(-45deg); }
+
+/* v37d – perfectly centred plus in the circle (drawn, not a font glyph) */
+.combo .cplus { position: relative; font-size: 0; line-height: 0; color: transparent; }
+.combo .cplus::before, .combo .cplus::after { content: ""; position: absolute; left: 50%; top: 50%; background: #e0bd85; border-radius: 1px; transform: translate(-50%, -50%); }
+.combo .cplus::before { width: 10px; height: 1.5px; }
+.combo .cplus::after { width: 1.5px; height: 10px; }
