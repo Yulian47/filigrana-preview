@@ -928,3 +928,17 @@ body:has(.kcalc) .dock { display: none !important; }
 
 .kcalc__save[hidden] { display: none; }
 .kcalc__save dd { color: #e8cf9f !important; font-size: 1.15rem !important; }
+
+/* v37b – combo cards in the dark "ear" style */
+.combo__card.card--dark { background: var(--ink); color: #f4ece1; padding: 30px 30px 34px; border-radius: var(--r); }
+.combo__card.card--dark::before { background: radial-gradient(110% 90% at 100% 0%, color-mix(in srgb, var(--gold) 28%, transparent), transparent 62%); }
+.combo__card .slabel { color: #e0bd85; }
+.combo__card .combo__no { color: color-mix(in srgb, #fff 10%, transparent); }
+.combo__card .chip { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.24); color: #fff6e8; box-shadow: none; }
+.combo__card .chip:hover { background: #fff; border-color: #fff; color: var(--ink); }
+.combo__card .cplus { border-color: #e0bd85; color: #e0bd85; }
+.combo__card .alt { color: #e0bd85; }
+.combo__card .combo__chips { padding-right: 18px; margin-bottom: 40px; }
+.combo__card .ear .round-btn { border-color: var(--ink); }
+.combo__card .ear:hover .round-btn { background: var(--gold); border-color: var(--gold); color: #fff; transform: rotate(-45deg); }
+@media (max-width: 860px) { .combo__card.card--dark { padding: 24px 22px 28px; } .combo__card .combo__chips { margin-bottom: 34px; } }
