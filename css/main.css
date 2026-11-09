@@ -917,3 +917,6 @@ body:has(.kcalc) .dock { display: none !important; }
 .kgroup__note { clear: both; margin: -2px 0 12px; font-size: .85rem; color: var(--muted); line-height: 1.5; }
 .kitem[aria-disabled="true"] { opacity: .38; cursor: not-allowed; }
 .kitem[aria-disabled="true"]:hover { border-color: transparent; }
+
+.kcalc__save[hidden] { display: none; }
+.kcalc__save dd { color: #e8cf9f !important; font-size: 1.15rem !important; }

@@ -108,8 +108,14 @@
     var state = function () {
       var sel = items.filter(function (b) { return b.getAttribute("aria-pressed") === "true"; });
       var p = 0, t = 0, from = false, unk = false;
-      sel.forEach(function (b) { p += +b.dataset.p; t += +b.dataset.t; if (b.dataset.from === "1") from = true; if (!+b.dataset.t) unk = true; });
-      return { sel: sel, p: p, t: t, from: from, unk: unk };
+      var tn = 0, tb = 0, hasN = false, hasB = false;
+      sel.forEach(function (b) {
+        p += +b.dataset.p; t += +b.dataset.t; if (b.dataset.from === "1") from = true; if (!+b.dataset.t) unk = true;
+        if (b.dataset.group === "vipper-bryn") { tb += +b.dataset.t; hasB = true; } else { tn += +b.dataset.t; hasN = true; }
+      });
+      var sum = t, saved = 0;
+      if (hasN && hasB) { t = Math.max(tn, tb); saved = sum - t; }   // nails/feet + brows/lashes: only the longest part counts
+      return { sel: sel, p: p, t: t, saved: saved, from: from, unk: unk };
     };
     var priceTxt = function (s) { return (s.from ? (isEn() ? "from " : "fra ") : "") + nf(s.p) + (isEn() ? " NOK" : " kr"); };
     var timeTxt = function (s) { return (s.unk || s.from ? (isEn() ? "at least " : "minst ") : "ca. ") + fmtTime(s.t); };
@@ -152,6 +158,9 @@
       sumEmpty.hidden = has; sumTot.hidden = !has; resetBtn.hidden = !has;
       calc.querySelector(".js-price").textContent = priceTxt(s);
       calc.querySelector(".js-time").textContent = timeTxt(s);
+      var sv = calc.querySelector(".kcalc__save");
+      sv.hidden = !(s.saved > 0);
+      if (s.saved > 0) calc.querySelector(".js-save").textContent = "ca. " + fmtTime(s.saved);
       if (bar) {
         bar.hidden = !has;
         bar.querySelector(".js-bprice").textContent = priceTxt(s);
