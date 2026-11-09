@@ -978,3 +978,7 @@ body:has(.kcalc) .dock { display: none !important; }
 .article__gallery img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; display: block; }
 @media (max-width: 560px) { .article__gallery { gap: 8px; } .article__gallery figure { border-radius: 14px; aspect-ratio: 3 / 4; } }
 .article__cta { margin-top: 2em; }
+
+/* v40 – Google review card: shared dark gradient, standard button */
+.rcard--cta { background-color: var(--ink); background-image: radial-gradient(110% 90% at 100% 0%, color-mix(in srgb, var(--gold) 28%, transparent), transparent 62%); }
+.rcard--cta .btn--primary { color: #fff; border: 1px solid rgba(255,255,255,.22); }
