@@ -137,8 +137,10 @@
           if (hasM && !okFor(b, "m")) block = true;
           if (hasP && (badP || !okFor(b, "p"))) block = true;
         } else if (b.dataset.group === "manikyr") {
+          if (hasP) block = true;   // manicure and pedicure are not combined
           if (vSel.some(function (v) { return !okFor(v, "m"); })) block = true;
         } else if (b.dataset.group === "pedikyr") {
+          if (hasM) block = true;   // manicure and pedicure are not combined
           if (vSel.length && b.dataset.pc !== "1") block = true;
           if (vSel.some(function (v) { return !okFor(v, "p"); })) block = true;
         }
