@@ -962,3 +962,7 @@ body:has(.kcalc) .dock { display: none !important; }
 /* v37e – one shared dark gradient: combo cards and the "18+" card */
 .combo__card.card--dark, .stat3.card--dark { background-color: var(--ink); background-image: radial-gradient(110% 90% at 100% 0%, color-mix(in srgb, var(--gold) 28%, transparent), transparent 62%); }
 .combo__card.card--dark::before { display: none; }
+
+/* v38 – CTA band: same dark gradient as the cards, standard gradient button */
+.section--dark.cta { background-color: var(--ink); background-image: radial-gradient(110% 90% at 100% 0%, color-mix(in srgb, var(--gold) 28%, transparent), transparent 62%); }
+.section--dark.cta .btn--primary { color: #fff; border: 1px solid rgba(255,255,255,.22); }
