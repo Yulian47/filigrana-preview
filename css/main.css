@@ -866,3 +866,50 @@ a[href^="tel:"] { white-space: nowrap; }
 .combo .alt { color: var(--muted); font-size: .85rem; letter-spacing: .12em; text-transform: uppercase; }
 .combo__cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
 @media (max-width: 800px) { .combo__grid { grid-template-columns: 1fr; } .combo__card { padding: 22px; } .combo__cta .btn { flex: 1 1 180px; justify-content: center; } }
+
+/* v36 – price calculator */
+body:has(.kcalc) .dock { display: none !important; }
+.kcalc__grid { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(300px, 1fr); gap: 28px; align-items: start; }
+.kgroup { border: 0; margin: 0 0 26px; padding: 0; min-width: 0; }
+.kgroup legend { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; padding: 0; margin-bottom: 12px; width: 100%; float: left; }
+.kgroup legend + * { clear: both; }
+.kgroup legend span { font-size: 1.5rem; font-weight: 300; color: var(--ink); letter-spacing: -.01em; }
+.kgroup legend small { color: var(--muted); font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; }
+.kitem { display: grid; grid-template-columns: 26px 1fr auto; align-items: center; gap: 4px 14px; width: 100%; text-align: left; padding: 16px 18px; margin: 0 0 10px; background: var(--card); border: 1.5px solid transparent; border-radius: 18px; color: var(--ink); font: inherit; cursor: pointer; transition: border-color .2s, background .2s, transform .2s; }
+.kitem:hover { border-color: var(--line); }
+.kitem:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.kitem__box { width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--gold); background: var(--cream); position: relative; grid-row: 1 / span 2; align-self: center; }
+.kitem[data-mode="multi"] .kitem__box { border-radius: 7px; }
+.kitem__t { font-weight: 500; line-height: 1.3; grid-column: 2; }
+.kitem__m { grid-column: 2; color: var(--muted); font-size: .9rem; }
+.kitem__m .kdot { opacity: .6; margin: 0 2px; }
+.kitem[aria-pressed="true"] { background: var(--tint-2); border-color: var(--gold); }
+.kitem[aria-pressed="true"] .kitem__box { background: var(--gold); }
+.kitem[aria-pressed="true"] .kitem__box::after { content: ""; position: absolute; left: 6px; top: 2px; width: 6px; height: 11px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+.kcalc__sum { position: sticky; top: 96px; background: var(--ink); color: #f6ecdc; border-radius: var(--r); padding: 28px; }
+.kcalc__sum h2 { margin: 0 0 14px; font-size: 1.4rem; font-weight: 300; color: #fff; }
+.kcalc__empty { margin: 0 0 18px; color: #d8c7ac; }
+.kcalc__lines { list-style: none; margin: 0 0 14px; padding: 0; display: grid; gap: 8px; }
+.kcalc__lines li { display: flex; justify-content: space-between; gap: 14px; font-size: .92rem; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,.14); }
+.kcalc__lines li span:last-child { white-space: nowrap; color: #e8cf9f; }
+.kcalc__tot { margin: 0 0 16px; display: grid; gap: 8px; }
+.kcalc__tot[hidden], .kcalc__empty[hidden], .kcalc__reset[hidden], .kcalc__bar[hidden] { display: none; }
+.kcalc__tot div { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.kcalc__tot dt { color: #d8c7ac; font-size: .85rem; letter-spacing: .1em; text-transform: uppercase; }
+.kcalc__tot dd { margin: 0; font-size: 1.5rem; font-weight: 300; color: #fff; text-align: right; }
+.kcalc__note { font-size: .82rem; color: #cdb99a; margin: 0 0 18px; line-height: 1.5; }
+.kcalc__sum .kcalc__go { width: 100%; justify-content: center; }
+.kcalc__go[aria-disabled="true"] { opacity: .45; pointer-events: none; }
+.kcalc__reset { background: none; border: 0; color: #e8cf9f; font: inherit; font-size: .85rem; text-decoration: underline; cursor: pointer; margin-top: 12px; padding: 4px 0; }
+.kcalc__bar { display: none; }
+@media (max-width: 900px) {
+  .kcalc__grid { grid-template-columns: 1fr; }
+  .kcalc__sum { position: static; padding: 22px; margin-bottom: 90px; }
+  .kitem { padding: 14px; grid-template-columns: 24px 1fr; }
+  .kitem__m { grid-column: 2; }
+  .kcalc__bar { position: fixed; left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom)); z-index: 90; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: var(--ink); color: #fff; border-radius: 999px; padding: 8px 8px 8px 20px; box-shadow: var(--shadow); }
+  .kcalc__bar[hidden] { display: none; }
+  .kcalc__bar strong { display: block; font-weight: 500; }
+  .kcalc__bar span { font-size: .78rem; color: #d8c7ac; }
+  .kcalc__bar .btn { padding: 12px 18px; font-size: .8rem; white-space: nowrap; }
+}
