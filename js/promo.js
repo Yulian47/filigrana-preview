@@ -28,7 +28,7 @@
     imagePosition: "50% 50%",
     kicker: { no: "Julekampanje", en: "Christmas offer" },
     badge: "−15 %",
-    title: { no: "Fine bryn til jul og nyttår? Start nå.", en: "Beautiful brows for Christmas and New Year? Start now." },
+    title: { no: "Fine bryn til Jul og Nyttår? Start nå.", en: "Beautiful brows for Christmas and New Year? Start now." },
     subtitle: { no: "på permanent makeup", en: "on permanent makeup" },
     lines: [
       { no: "Tilbudet gjelder til og med 30. november.", en: "The offer is valid until and including 30 November." },
