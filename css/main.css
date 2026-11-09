@@ -943,3 +943,12 @@ body:has(.kcalc) .dock { display: none !important; }
 .combo__card .ear:hover .round-btn { background: var(--gold); border-color: var(--gold); color: #fff; transform: rotate(-45deg); }
 @media (max-width: 860px) { .combo__card.card--dark { padding: 24px 22px 28px; } .combo__card .combo__chips { margin-bottom: 34px; } }
 .cform .cform__hint { display: block; margin-top: 6px; }
+
+/* v37c – whole combo card is one link to the calculator */
+.combo__card { cursor: pointer; transition: transform .35s var(--ease, ease), box-shadow .35s; }
+.combo__card:hover { transform: translateY(-4px); box-shadow: 0 22px 50px rgba(48,32,13,.22); }
+.combo__link { position: absolute; inset: 0; z-index: 2; border-radius: inherit; }
+.combo__link:focus-visible { outline: 2px solid #e0bd85; outline-offset: -4px; }
+.combo__card .chip { cursor: pointer; transform: none !important; }
+.combo__card:hover .chip { background: rgba(255,255,255,.16); }
+.combo__card:hover .ear .round-btn { background: var(--gold); border-color: var(--gold); color: #fff; transform: rotate(-45deg); }
