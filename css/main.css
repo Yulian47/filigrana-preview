@@ -959,6 +959,6 @@ body:has(.kcalc) .dock { display: none !important; }
 .combo .cplus::before { width: 10px; height: 1.5px; }
 .combo .cplus::after { width: 1.5px; height: 10px; }
 
-/* v37e – combo cards: same flat dark fill as the "18+" card (no gold glow) */
-.combo__card.card--dark { background: var(--ink); }
+/* v37e – one shared dark gradient: combo cards and the "18+" card */
+.combo__card.card--dark, .stat3.card--dark { background-color: var(--ink); background-image: radial-gradient(110% 90% at 100% 0%, color-mix(in srgb, var(--gold) 28%, transparent), transparent 62%); }
 .combo__card.card--dark::before { display: none; }
