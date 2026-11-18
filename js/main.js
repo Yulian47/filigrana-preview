@@ -51,8 +51,10 @@
     if (header) header.classList.toggle("is-scrolled", y > 8);
     if (dock) dock.classList.toggle("is-visible", y > 420);
   }
-  onScroll();
-  window.addEventListener("scroll", onScroll, { passive: true });
+  var ticking = false;
+  function onScrollRaf() { if (ticking) return; ticking = true; requestAnimationFrame(function () { ticking = false; onScroll(); }); }
+  requestAnimationFrame(onScroll);   // first read after the initial paint: no forced reflow during load
+  window.addEventListener("scroll", onScrollRaf, { passive: true });
 
   // ---- Scroll reveal ----
   var items = document.querySelectorAll(".reveal");
@@ -76,7 +78,7 @@
   if (form) {
     var dIn = form.querySelector("#cf-date");
     if (dIn) { var td = new Date(); dIn.min = td.getFullYear() + "-" + ("0" + (td.getMonth() + 1)).slice(-2) + "-" + ("0" + td.getDate()).slice(-2); }
-    var status = form.querySelector(".cform__status");
+    var status = form.querySelector(".cform__status"), formT0 = Date.now();
     var MSG = {
       no: { ok: "Takk for din melding! Vi tar kontakt snart.", err: "Noe gikk galt. Prøv igjen.", req: "Fyll ut navn, gyldig e-post, telefonnummer og en melding (minst 10 tegn).", sending: "Sender…" },
       en: { ok: "Thank you! We will be in touch soon.", err: "Something went wrong. Please try again.", req: "Please fill in name, a valid email, phone number and a message (min. 10 characters).", sending: "Sending…" }
@@ -89,7 +91,9 @@
       status.className = "cform__status";
       if (n.length < 2 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(m) || ph.length < 8 || msg.length < 10) { status.textContent = t.req; status.classList.add("err"); return; }
       var btn = form.querySelector("button[type=submit]"); btn.disabled = true; status.textContent = t.sending;
-      fetch(form.action, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } })
+      var fd = new FormData(form);
+      if (Date.now() - formT0 < 2500) { status.textContent = t.ok; status.classList.add("ok"); btn.disabled = false; return; }   // bot: submitted faster than a human could
+      fetch(form.action, { method: "POST", body: fd, headers: { Accept: "application/json" } })
         .then(function (r) { if (!r.ok) throw 0; status.textContent = t.ok; status.classList.add("ok"); form.reset(); })
         .catch(function () { status.textContent = t.err; status.classList.add("err"); })
         .finally(function () { btn.disabled = false; });
