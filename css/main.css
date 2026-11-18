@@ -1005,3 +1005,5 @@ body:has(.kcalc) .dock { display: none !important; }
 .rcard--timma .stars { margin: 4px 0 2px; }
 .rcard--timma h3 { color: var(--ink); font-size: 1.6rem; font-weight: 400; letter-spacing: -.01em; margin: .1em 0 .3em; }
 .rcard--timma p { color: var(--muted); font-size: .95rem; line-height: 1.6; margin: 0 0 1em; }
+.rcard--timma .btn--ghost { transition: background-position .55s var(--ease), color .25s, border-color .25s; }
+.rcard--timma .btn--ghost:hover { background: var(--btn-grad) 100% 0 / 200% 100%; border-color: transparent; color: #fff; }
