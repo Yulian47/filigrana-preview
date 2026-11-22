@@ -1028,3 +1028,7 @@ body:has(.kcalc) .dock { display: none !important; }
 .shopc__foot { margin-top: auto; padding-top: 14px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .shopc__foot b { color: var(--ink); font-weight: 600; font-size: .95rem; }
 .btn.is-off { opacity: .55; cursor: default; pointer-events: none; }
+
+/* v47 – terms page draft markers */
+.article__body mark { background: color-mix(in srgb, var(--gold) 28%, #fff); color: var(--ink); padding: 0 .25em; border-radius: 5px; }
+.draftnote { background: color-mix(in srgb, var(--gold) 14%, #fff); border-radius: 14px; padding: 12px 16px; font-size: .92rem; }
