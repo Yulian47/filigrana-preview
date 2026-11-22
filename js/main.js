@@ -73,7 +73,7 @@
   }
 
 
-  // ---- Contact form (Formspree) ----
+  // ---- Contact form (sent by send.php -> post@filigrana.no) ----
   var form = document.getElementById("contactForm");
   if (form) {
     var dIn = form.querySelector("#cf-date");
@@ -91,10 +91,11 @@
       status.className = "cform__status";
       if (n.length < 2 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(m) || ph.length < 8 || msg.length < 10) { status.textContent = t.req; status.classList.add("err"); return; }
       var btn = form.querySelector("button[type=submit]"); btn.disabled = true; status.textContent = t.sending;
-      var fd = new FormData(form);
+      var fd = new FormData(form); fd.append("t", formT0);
       if (Date.now() - formT0 < 2500) { status.textContent = t.ok; status.classList.add("ok"); btn.disabled = false; return; }   // bot: submitted faster than a human could
       fetch(form.action, { method: "POST", body: fd, headers: { Accept: "application/json" } })
-        .then(function (r) { if (!r.ok) throw 0; status.textContent = t.ok; status.classList.add("ok"); form.reset(); })
+        .then(function (r) { return r.json().catch(function () { return {}; }); })
+        .then(function (j) { if (!j.ok) throw 0; status.textContent = t.ok; status.classList.add("ok"); form.reset(); })
         .catch(function () { status.textContent = t.err; status.classList.add("err"); })
         .finally(function () { btn.disabled = false; });
     });
